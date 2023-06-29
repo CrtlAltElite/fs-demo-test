@@ -13,8 +13,9 @@ class Config:
     SQLALCHEMY_DATABASE_URI=os.environ.get('SQLALCHEMY_DATABASE_URI')
     SQLALCHEMY_TRACK_MODIFICATIONS=os.environ.get('SQLALCHEMY_TRACK_MODIFICATIONS')
 
+static_folder = os.path.abspath('./client/dist')
 
-app = Flask(__name__,static_folder='./client/dist',static_url_path='')
+app = Flask(__name__,static_folder=static_folder, static_url_path='')
 app.config.from_object(Config)
 db = SQLAlchemy(app)
 migrate = Migrate(app,db)
